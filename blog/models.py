@@ -6,6 +6,7 @@ class Article(models.Model):
         ('d','پیشنویس'),
         ('p','منتشر شده'),
     )
+    author = models.CharField(max_length=50 , verbose_name="گردآوری شده توسط")
     title = models.CharField(max_length=100,verbose_name="عنوان مقاله")
     slug = models.SlugField(max_length=100,unique=True,verbose_name="آدرس مقاله")
     description = models.TextField(verbose_name="محتوا")
@@ -17,7 +18,7 @@ class Article(models.Model):
     class meta:
         verbose_name = "مقاله"
         verbose_name_plural = "مقالات"
-        
+        ordering = ['-publish','status','created']
     def __str__(self):
         return self.title
     

@@ -1,0 +1,11 @@
+
+<center>
+    <article>
+        {% for i in article %}
+        <img src=" {{i.thumbnail.url}} " alt=" {{i.title}} ">
+        <h1><a href = {{i.slug}}>{{i.title}}</a></h1>
+        <small> {{i.publish}} </small>
+        <p> {{i.description}} </p>
+        {% endfor %}
+        </article>
+</center>

@@ -27,10 +27,10 @@
     <center>
      <article>
         {% for i in article %}
-        <img src=" {{i.thumbnail.url}} " alt=" {{i.title}} " width="600" height="400">
+        <img src=" {{i.thumbnail.url}} " alt=" {{i.title}} " width="400" height="320">
         <h1><a href = "{% url 'blog:detail' i.slug %}">{{i.title}}</a></h1>
         <small> {{i.publish}} </small>
-        <p> {{i.description}} </p>
+        <p> {{i.description|truncatewords:30}} </p>
         {% endfor %}
         </article>
     </center>

@@ -1,11 +1,12 @@
-
+{% extends 'blog/Base.html' %}
+{% block title %}|{{article.title}} {% endblock %}
+{% block Article %}
 <center>
-    <article>
-        {% for i in article %}
-        <img src=" {{i.thumbnail.url}} " alt=" {{i.title}} ">
-        <h1><a href = {{i.slug}}>{{i.title}}</a></h1>
-        <small> {{i.publish}} </small>
-        <p> {{i.description}} </p>
-        {% endfor %}
-        </article>
+     <article>
+         <img src=" {{article.thumbnail.url}} " alt=" {{article.title}} " width="600" height="400">
+         <h1>{{article.title}}</h1>
+         <small> {{article.publish}} </small>
+         <p> {{article.description}} </p>
+     </article
 </center>
+{% endblock %}

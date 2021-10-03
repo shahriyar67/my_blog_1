@@ -4,16 +4,21 @@ from .models import Article,Category
 
 # Register your models here.
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('position','name',  'status')
+    list_filter = (['status'])
+    search_fields = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'jpublish', 'status')
     list_filter = ('author', 'publish', 'status')
-    search_fields = ('author', 'publish', 'status')
+    search_fields = ('title', 'author', 'publish', 'status')
     prepopulated_fields = {'slug': ('title',)}
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'position', 'publish')
+
 
 
 admin.site.register(Article, ArticleAdmin)

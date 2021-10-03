@@ -7,10 +7,17 @@ from extensions.utils import jalali_converter
 class Category(models.Model):
     name = models.CharField(max_length=20, verbose_name="نام دسته بندی")
     position = models.IntegerField(verbose_name="پوزیشن")
-    publish = models.BooleanField(verbose_name="منتشر شود؟")
+    status = models.BooleanField(default=True, verbose_name="منتشر شود؟")
+    slug = models.SlugField(default='', max_length=100, unique=True,
+                             verbose_name="اسلاگ دسته بندی")
     
     class Meta:
         ordering = ['position']
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
+
+    def __str__(self):
+        return self.name
 
 
 class Article(models.Model):

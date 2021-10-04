@@ -1,23 +1,28 @@
 from django.contrib import admin
 from django.contrib.admin.sites import AdminSite
-from .models import Article,Category
+from .models import Article, Category
 
 # Register your models here.
 
+
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('position','name',  'status')
+    list_display = ('position', 'name', 'status')
     list_filter = (['status'])
     search_fields = ('name', 'slug')
     prepopulated_fields = {'slug': ('name',)}
-
+    
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'jpublish', 'status')
+    def category_to_str(self,obj):
+        CatList = [i.name for i in obj.Category.all() ]
+        return ", ".join(CatList)
+    category_to_str.short_description = "دسته بندی ها"
+    
+    list_display = ('title', 'author', 'jpublish', 'status', 'category_to_str')
     list_filter = ('author', 'publish', 'status')
     search_fields = ('title', 'author', 'publish', 'status')
     prepopulated_fields = {'slug': ('title',)}
-
-
+    
 
 
 

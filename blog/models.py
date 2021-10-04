@@ -33,7 +33,7 @@ class Article(models.Model):
     thumbnail = models.ImageField(upload_to="images", verbose_name="تصویر")
     publish = models.DateTimeField(default=timezone.now,
                                    verbose_name="زمان انتشار")
-    category = models.ManyToManyField(Category)
+    Category = models.ManyToManyField(Category)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES,
                               verbose_name="وضعیت")
@@ -49,7 +49,3 @@ class Article(models.Model):
     def jpublish(self):
         return jalali_converter(self.publish)
     jpublish.short_description = "زمان انتشار"
-    
-    def jcreated(self):
-        return jalali_converter(self.created)
-    jcreated.short_description = "زمان ساخته شدن مقاله"

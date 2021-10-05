@@ -18,11 +18,32 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'blog/css/styles.css' %}" rel="stylesheet" />
-    </head>
+        <link href="{% static 'blog/css/my_creation.css' %}" rel="stylesheet" />  
+        <ul class="navbar-nav ml-auto ">
+          <div class="topnav navbar-collapse">
+            <a class="nav-link" href="{% url 'blog:home' %}">خانه</a>
+            {% for cat in Category %}
+              <a class="nav-link" href="#">{{cat.name}}</a>
+            {% endfor %}
+          </div>
+         </ul>
+      </head>
+    <body>
+  <!--  <nav>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:home' %}">خانه</a>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+ 
   {% block Article %}
   
   {% endblock %}
   {% block main %}
       
   {% endblock %}
+    </body>
 </html>

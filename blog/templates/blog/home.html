@@ -3,7 +3,7 @@
 {% block main %}
 
 <body id="page-top">
-    <!-- Navigation-->
+    <!-- Navigation
     <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
@@ -15,7 +15,7 @@
             <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <!-- Header-->
+    Header-->
     <header class="masthead d-flex align-items-center">
         <div class="container px-4 px-lg-5 text-center">
             <h1 class="mb-1">به امتحانات آنلاین خوش آمدید</h1>
@@ -29,8 +29,17 @@
         {% for i in article %}
         <img src=" {{i.thumbnail.url}} " alt=" {{i.title}} " width="400" height="320">
         <h1><a href = "{% url 'blog:detail' i.slug %}">{{i.title}}</a></h1>
-        <small> {{i.jpublish}} </small>
+        <small class="post-meta"> {{i.jpublish}}
+            <p>نوشته شده توسط {{i.author}} </p>
+        </small>
         <p> {{i.description|truncatewords:30}} </p>
+        
+        <div>
+            {% for cat in article.Category.all %}
+             <a href="#">#{{cat.name}}</a>
+            {% endfor %}
+
+        </div>
         {% endfor %}
         </article>
     </center>
@@ -49,8 +58,10 @@
                 </li>
             </ul>
             <p class="text-muted small mb-0">Copyright &copy; Your Website 2021</p>
-            <a class="btn btn-primary btn-xl" href="#about">صفحه بعد</a>
-            <a class="btn btn-primary btn-xl" href="#about">صفحع قبل</a>
+            <div class="pager-botton">
+             <a class="btn btn-primary btn-xl" href="#about">صفحه بعد &rarr;</a>
+             <a class="btn btn-primary btn-xl" href="#about">صفحع قبل &larr;</a>
+            </div>
         </div>
     </footer>
     <!-- Scroll to Top Button-->

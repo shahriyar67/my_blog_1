@@ -10,6 +10,7 @@
               <div class="site-heading">
                   <center>
                     <h1>{{article.title}} </h1>
+                    <time>{{i.jpublish}}</time>
                   </center>
               </div>
           </div>
@@ -17,12 +18,13 @@
     </div>
 </header>
 
-<center>
+
      <article>
-        
+        <center>
          <h1>{{article.title}}</h1>
          <small> {{article.jpublish}} </small>
-         <p> {{article.description|linebreaks}} </p>
+        </center>
+        <p class="detai text-justify"> {{article.description|linebreaks}} </p>
      </article
-</center>
+
 {% endblock %}

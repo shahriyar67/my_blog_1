@@ -27,7 +27,7 @@
  
 
      <article>
-        {% for i in article %}
+        {% for i in category.articles.all %}
         <center>
         <img src=" {{i.thumbnail.url}} " alt=" {{i.title}} " width="400" height="320">
         </center>

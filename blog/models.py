@@ -8,7 +8,7 @@ class Category(models.Model):
     name = models.CharField(max_length=20, verbose_name="نام دسته بندی")
     position = models.IntegerField(verbose_name="پوزیشن")
     status = models.BooleanField(default=True, verbose_name="منتشر شود؟")
-    slug = models.SlugField(default='', max_length=100, unique=True,
+    slug = models.SlugField(max_length=100, unique=True,
                              verbose_name="اسلاگ دسته بندی")
     
     class Meta:
@@ -33,7 +33,7 @@ class Article(models.Model):
     thumbnail = models.ImageField(upload_to="images", verbose_name="تصویر")
     publish = models.DateTimeField(default=timezone.now,
                                    verbose_name="زمان انتشار")
-    Category = models.ManyToManyField(Category)
+    Category = models.ManyToManyField(Category, related_name="articles")
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES,
                               verbose_name="وضعیت")

@@ -1,0 +1,13 @@
+<div class="collapse navbar-collapse" id="navbarResponsiv">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:home' %}">category</a>
+        </li>
+        {% for cat in category %}
+        <li>
+            <a class="nav-link" href="#">{{cat.name}}</a>
+            <h6>jigar</h6>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

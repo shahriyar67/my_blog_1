@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load Base_tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,12 +20,14 @@
         <link href="{% static 'blog/css/styles.css' %}" rel="stylesheet" />
         <link href="{% static 'blog/css/my_creation.css' %}" rel="stylesheet" />  
         <ul class="navbar-nav ml-auto ">
-          <div class="topnav navbar-collapse">
+         <div class="topnav navbar-collapse">
+           <li>
             <a class="nav-link" href="{% url 'blog:home' %}">خانه</a>
-            {% for cat in Category %}
-              <a class="nav-link" href="#">{{cat.name}}</a>
-            {% endfor %}
+            {{ category }}
+           </li>
           </div>
+          
+          salam
          </ul>
       </head>
     <body>

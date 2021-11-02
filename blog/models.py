@@ -1,6 +1,17 @@
 from django.db import models
 from django.utils import timezone
 from extensions.utils import jalali_converter
+# my managers
+
+
+class ArticleManager(models.Manager):
+    def published(self):
+        return self.filter(status='p')
+
+
+class CategoryManager(models.Manager):
+    def published(self):
+        return self.filter(status=True)
 # Create your models here.
 
 
@@ -9,7 +20,7 @@ class Category(models.Model):
     position = models.IntegerField(verbose_name="پوزیشن")
     status = models.BooleanField(default=True, verbose_name="منتشر شود؟")
     slug = models.SlugField(max_length=100, unique=True,
-                             verbose_name="اسلاگ دسته بندی")
+                             verbose_name = "اسلاگ دسته بندی")
     
     class Meta:
         ordering = ['position']
@@ -18,6 +29,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    objects = CategoryManager()
 
 
 class Article(models.Model):
@@ -49,3 +61,5 @@ class Article(models.Model):
     def jpublish(self):
         return jalali_converter(self.publish)
     jpublish.short_description = "زمان انتشار"
+    
+    objects = ArticleManager()

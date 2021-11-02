@@ -19,7 +19,7 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     
     def category_to_str(self, obj):
-        CatList = [i.name for i in obj.Category.all()]
+        CatList = [i.name for i in obj.Category.published()]
         return ", ".join(CatList)
     category_to_str.short_description = "دسته بندی ها"
 

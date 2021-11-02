@@ -15,6 +15,6 @@ templateAdress = get_template("blog/partials/category_navbar.html")
 
 @register.inclusion_tag(templateAdress)
 def category_navbar():
-    return{
+    return {
         "category": Category.objects.filter(status=True)
     }

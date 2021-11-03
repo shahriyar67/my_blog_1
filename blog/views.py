@@ -31,6 +31,6 @@ def category(request, slug, page=1):
     articles = paginator.get_page(page)
     context = {
         "category": category,
-        "Articles": articles
+        "articles": articles
     }
     return render(request, 'blog/category.html', context)

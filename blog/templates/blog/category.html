@@ -15,7 +15,7 @@
  <h3 class="alert alert-primary text-center">بخش : {{category.name}} </h3>
 
      <article>
-        {% for i in category.articles.published %}
+        {% for i in articles %}
         <center>
         <img src=" {{i.thumbnail.url}} " alt=" {{i.title}} " width="400" height="320">
         </center>
@@ -37,11 +37,11 @@
     
         <div class="pager-botton">
             
-            {% if article.has_next %}
-               <a class="btn btn-primary btn-xl" href="{% url 'blog:home' article.next_page_number %} ">صفحه بعد &rarr;</a>
+            {% if articles.has_next %}
+               <a class="btn btn-primary btn-xl" href="{% url 'blog:category' category.slug articles.next_page_number %} ">صفحه بعد &rarr;</a>
             {% endif %}
-            {% if article.has_previous %}
-               <a class="btn btn-primary btn-xl" href="{% url 'blog:home' article.previous_page_number %} ">صفحع قبل &larr;</a>
+            {% if articles.has_previous %}
+               <a class="btn btn-primary btn-xl" href="{% url 'blog:category' category.slug articles.previous_page_number %} ">صفحع قبل &larr;</a>
             {% endif %}
               
         </div>

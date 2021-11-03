@@ -1,12 +1,19 @@
 <div >
-    <ul type="none">
-        <li >
-            <a href="{% url 'blog:home' %}">خانه</a>
-        </li>
-        {% for cat in category %}
-        <li>
-            <a href="#">{{cat.name}}</a>
-        </li>
-        {% endfor %}
-    </ul>
+    <nav role="navigation">
+        <ul type="none">
+            <li >
+                <a href="{% url 'blog:home' %}">خانه</a>
+            </li>
+            {% for cat in category %}
+              {% if cat.parent == None %}
+               <li>
+                <a href="{% url 'blog:category' cat.slug %}">{{cat.name}}</a>
+                 {% if cat.children.all %}
+                   {% include 'blog/partials/catLoop.html' %} 
+                 {%endif%}
+               </li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
 </div>

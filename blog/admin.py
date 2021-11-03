@@ -6,7 +6,7 @@ from .models import Article, Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('position', 'name', 'slug', 'status')
+    list_display = ('position', 'name', 'parent', 'slug', 'status')
     list_filter = (['status'])
     search_fields = ('name', 'slug')
     prepopulated_fields = {'slug': ('name',)}

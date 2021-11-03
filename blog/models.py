@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import SET_NULL
 from django.utils import timezone
 from extensions.utils import jalali_converter
 # my managers
@@ -17,13 +18,16 @@ class CategoryManager(models.Manager):
 
 class Category(models.Model):
     name = models.CharField(max_length=20, verbose_name="نام دسته بندی")
+    parent = models.ForeignKey('self', null=True, blank=True, default=None,
+                               on_delete=models.SET_NULL, 
+                               related_name='children', verbose_name='زیر دسته')
     position = models.IntegerField(verbose_name="پوزیشن")
     status = models.BooleanField(default=True, verbose_name="منتشر شود؟")
     slug = models.SlugField(max_length=100, unique=True,
-                             verbose_name = "اسلاگ دسته بندی")
+                            verbose_name="اسلاگ دسته بندی")
     
     class Meta:
-        ordering = ['position']
+        ordering = ['parent__id', 'position']
         verbose_name = "دسته بندی"
         verbose_name_plural = "دسته بندی ها"
 

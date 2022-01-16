@@ -54,9 +54,9 @@ class CategoryAdmin(admin.ModelAdmin):
     
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'jpublish', 'status', 'category_to_str')
-    list_filter = ('author', 'publish', 'status')
-    search_fields = ('title', 'author', 'publish', 'status')
+    list_display = ('title', 'thumbnail_tag', 'author', 'slug','jpublish', 'status', 'category_to_str')
+    list_filter = ('publish', 'status')
+    search_fields = ('title', 'publish', 'status')
     prepopulated_fields = {'slug': ('title',)}
     actions = [make_published, make_drafted]
     

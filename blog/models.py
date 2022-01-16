@@ -1,7 +1,9 @@
 from django.db import models
-from django.db.models.deletion import SET_NULL
+#from django.db.models.deletion import SET_NULL
 from django.utils import timezone
 from extensions.utils import jalali_converter
+from django.utils.html import format_html
+from django.contrib.auth.models import User
 # my managers
 
 
@@ -19,7 +21,7 @@ class CategoryManager(models.Manager):
 class Category(models.Model):
     name = models.CharField(max_length=20, verbose_name="نام دسته بندی")
     parent = models.ForeignKey('self', null=True, blank=True, default=None,
-                               on_delete=models.SET_NULL, 
+                               on_delete=models.SET_NULL,
                                related_name='children', verbose_name='زیر دسته')
     position = models.IntegerField(verbose_name="پوزیشن")
     status = models.BooleanField(default=True, verbose_name="منتشر شود؟")
@@ -41,7 +43,7 @@ class Article(models.Model):
         ('d', 'پیشنویس'),
         ('p', 'منتشر شده'),
     )
-    author = models.CharField(max_length=50, verbose_name="گردآوری شده توسط")
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles', verbose_name='نویسنده')
     title = models.CharField(max_length=100, verbose_name="عنوان مقاله")
     slug = models.SlugField(max_length=100, unique=True,
                             verbose_name="آدرس مقاله")
@@ -66,4 +68,7 @@ class Article(models.Model):
         return jalali_converter(self.publish)
     jpublish.short_description = "زمان انتشار"
     
+    def thumbnail_tag(self):
+        return format_html("<img width=100 height=75 style='border-radius: 5px;' src='{}'>".format(self.thumbnail.url))
+        
     objects = ArticleManager()

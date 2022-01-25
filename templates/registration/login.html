@@ -33,9 +33,17 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+	{% if form.non_field_errors %}
+		<div class="errors" style="background-color: #eccaca;">
+			{% for error in form.non_field_errors %}
+			<span style="color: red;">{{error}}</span>
+			{% endfor %}
+		</div>
+    {% endif %}
+			
 	<div class="limiter">
 		<div class="container-login100">
+			
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="post">{% csrf_token %}
 					<span class="login100-form-title  p-b-26 myfont">
@@ -47,6 +55,13 @@
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
 						{{form.username|add_class:'input100'}}
+						  {% if form.username.errors %}
+                            <div class="errors">
+								{% for error in form.username.errors %}
+								  <span>{{error}}</span>
+								{% endfor %}
+							</div>
+						  {% endif %}
 						<span class="focus-input100" data-placeholder="نام کاربری"></span>
 					</div>
 
@@ -55,6 +70,13 @@
 							<i class="zmdi zmdi-eye"></i>
 						</span>
 						{{form.password|add_class:'input100'}}
+						  {% if form.password.errors %}
+                            <div class="errors">
+								{% for error in form.password.errors %}
+								  <span>{{error}}</span>
+								{% endfor %}
+							</div>
+						  {% endif %}
 						<span class="focus-input100" data-placeholder="گذر واژه"></span>
 					</div>
 

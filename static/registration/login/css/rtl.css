@@ -13,3 +13,10 @@ body{
     right: initial;
     left: 0;
 }
+
+.errors{
+    color: red;
+    background-color: rgb(233, 187, 187);
+    padding: 20px , 30px;
+}
+

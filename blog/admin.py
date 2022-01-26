@@ -59,11 +59,6 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'publish', 'status')
     prepopulated_fields = {'slug': ('title',)}
     actions = [make_published, make_drafted]
-    
-    def category_to_str(self, obj):
-        CatList = [i.name for i in obj.Category.published()]
-        return ", ".join(CatList)
-    category_to_str.short_description = "دسته بندی ها"
 
 
 

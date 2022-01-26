@@ -2,7 +2,7 @@
 from django.conf.urls import url
 from django.contrib.auth import views
 from django.urls import path
-from .views import home
+from .views import ArticleList
 
 app_name = 'account'
 urlpatterns = [
@@ -19,5 +19,5 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('', home, name= 'home'),
+    path('', ArticleList.as_view(), name='home'),
 ]

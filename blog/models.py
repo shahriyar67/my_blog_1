@@ -4,6 +4,8 @@ from django.utils import timezone
 from extensions.utils import jalali_converter
 from django.utils.html import format_html
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 # my managers
 
 
@@ -70,6 +72,9 @@ class Article(models.Model):
     
     def thumbnail_tag(self):
         return format_html("<img width=100 height=75 style='border-radius: 5px;' src='{}'>".format(self.thumbnail.url))
+    
+    def get_absolute_url(self):
+        return reverse("account:home")
     
     def category_to_str(self):
         CatList = [i.name for i in self.Category.published()]

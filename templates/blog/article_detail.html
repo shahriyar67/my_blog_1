@@ -24,7 +24,7 @@
          <h1>{{article.title}}</h1>
          <small> {{article.jpublish}} </small>
         </center>
-        <p class="detai text-justify"> {{article.description|safe}} </p>
+        <p class="detai text-justify"> {{article.description|linebreaks|safe}} </p>
      </article
 
 {% endblock %}

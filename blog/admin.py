@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.admin.sites import AdminSite
 from .models import Article, Category
 
 # Register your models here.

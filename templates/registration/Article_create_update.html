@@ -36,12 +36,14 @@
             {{ form.thumbnail|as_crispy_field }}
             {{ form.publish|as_crispy_field }}
           </div>
+          {% if request.user.is_superuser %}
           <div class="form-group col-md-6 ">
             {{ form.author|as_crispy_field }}
           </div>
           <div class="form-group col-md-6 ">
             {{ form.status|as_crispy_field }}
           </div>
+          {% endif %}
         </div> 
          <button class="btn btn-success">ارسال مقاله</button>
        </form>

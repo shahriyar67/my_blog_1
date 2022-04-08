@@ -24,15 +24,7 @@
          <h1>{{article.title}}</h1>
          <small> {{article.jpublish}} </small>
         </center>
-        {% if object.is_special %}
-          {% if user.is_authenticated and user.is_specialuser or user == object.author or user.is_superuser %}
-              <p class="detail text-justify"> {{article.description|safe|linebreaks}} </p>
-          {% else %}
-          <p>این یک مقاله ویژه است و برای تماشا باید اشتراک ویژه تهیه فرمایید</p>
-          {% endif %}          
-        {% else %}
-           <p class="detail text-justify"> {{article.description|safe|linebreaks}} </p>
-        {% endif %}
-      </article>
+        <p class="detai text-justify"> {{article.description|linebreaks|safe}} </p>
+     </article
 
 {% endblock %}

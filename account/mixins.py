@@ -8,12 +8,12 @@ class FieldMixins():
         if request.user.is_superuser:
             self.fields = ['author', 'title', 'slug',
                            'description', 'thumbnail',
-                           'Category', 'publish', 'status'
+                           'Category', 'publish', 'is_special', 'status'
                            ]
         elif request.user.is_author:
             self.fields = ['title', 'slug',
                            'description', 'thumbnail',
-                           'Category', 'publish'
+                           'Category', 'is_special', 'publish'
                            ]
         else:
             raise Http404
@@ -34,7 +34,7 @@ class FormValidMixin():
 class AuthorAccessMixin():
     def dispatch(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Article, pk=pk)
-        if article.author == request.user and article.status == 'd'\
+        if article.author == request.user and article.status in ['b','d']\
             or request.user.is_superuser:
           return super().dispatch(request, *args, **kwargs)
         else:

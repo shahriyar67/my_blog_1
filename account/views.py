@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from blog.models import Article
 from django.urls import reverse_lazy
 from .mixins import FieldMixins, FormValidMixin, AuthorAccessMixin, SuperUserAccessMixin
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 class ArticleList(LoginRequiredMixin, ListView):
@@ -29,3 +30,11 @@ class ArticleDelete(SuperUserAccessMixin, DeleteView):
     model = Article
     success_url = reverse_lazy('account:home')
     template_name = 'registration/article_delete.html'
+
+
+class ArticlePreview(LoginRequiredMixin, DeleteView):
+    def get_object(self) :
+        pk = self.kwargs.get('pk')
+        return get_object_or_404 (Article,pk=pk)
+    template_name = 'registration/article_confirm_delete.html'
+    

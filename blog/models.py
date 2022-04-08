@@ -44,6 +44,8 @@ class Article(models.Model):
     STATUS_CHOICES = (
         ('d', 'پیشنویس'),
         ('p', 'منتشر شده'),
+        ('i', 'درحال بررسی'),
+        ('b', 'برگشت داده شده'),
     )
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles', verbose_name='نویسنده')
     title = models.CharField(max_length=100, verbose_name="عنوان مقاله")
@@ -57,7 +59,7 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES,
                               verbose_name="وضعیت")
-    
+    is_special = models.BooleanField(default= False, verbose_name= "مقاله ویژه")
     def __str__(self):
         return self.title
     

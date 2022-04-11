@@ -5,11 +5,13 @@ from .views import (
     ArticleCreate,
     ArticleUpdate,
     ArticleDelete,
-    ArticlePreview
+    ArticlePreview,
+    Profile,
+    Login
 )
 app_name = 'account'
 urlpatterns = [
-    path('login/', views.LoginView.as_view(), name='login'),
+    path('login/', Login.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
 
    # path('password_change/', views.PasswordChangeView.as_view(), name='password_change'),
@@ -26,5 +28,6 @@ urlpatterns += [
     path('article/create', ArticleCreate.as_view(), name="article-create"),
     path('article/update/<int:pk>', ArticleUpdate.as_view(), name="article-update"),
     path('article/delete/<int:pk>', ArticleDelete.as_view(), name="article-delete"),
-    path('article/preview/<int:pk>', ArticlePreview.as_view(), name="article-preview")
+    path('article/preview/<int:pk>', ArticlePreview.as_view(), name="article-preview"),
+    path('profile/', Profile.as_view(), name="profile")
 ]

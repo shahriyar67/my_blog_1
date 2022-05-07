@@ -17,7 +17,7 @@ from .mixins import (
 from django.shortcuts import get_object_or_404
 from .models import User
 from .forms import ProfileForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 # Create your views here.
 
 class ArticleList(LoginRequiredMixin, AuthorsAccessMixin, ListView):
@@ -76,3 +76,4 @@ class Login(LoginView):
             return reverse_lazy("account:home")
         else :
             return reverse_lazy("account:profile")
+

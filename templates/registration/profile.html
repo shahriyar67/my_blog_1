@@ -11,7 +11,7 @@
 
 {% block main %}
 
-<div class="col-md-12">
+<div dir="rtl" class="col-md-12">
     <!-- general form elements -->
     <div class="card card-primary">
       <div class="card-header">
@@ -32,6 +32,13 @@
         <div class="form-row">
           <div class="form-group col-md-6 mb-0">
             {{ form.username|as_crispy_field }}
+            <div dir="rtl">
+              <label>
+                <span>
+                  <a href="{% url 'password_change' %}">تغییر گذرواژه</a>
+                </span>
+              </label>
+            </div>
           </div>
           <div class="form-group col-md-6 mb-0">
             {{ form.email|as_crispy_field }}

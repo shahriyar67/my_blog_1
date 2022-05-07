@@ -1,6 +1,9 @@
 {% extends 'blog/Base.html' %}
 {% block title %}|{{object.title}} {% endblock %}
 {% block Article %}
+{% load comment_tags %}  {# Loading the template tag #}
+ {# Render all the comments belong to the passed object "obj" #}
+{% include_bootstrap %} {# Include bootstrap 4.1.1 - remove this line if BS is already used in your project #}
 
 <header class="masthead" style="background-image: url('{{article.thumbnail.url}} ')">
     <div class="overlay"></div>
@@ -27,11 +30,14 @@
         {% if object.is_special %}
           {% if user.is_authenticated and user.is_specialuser or user == object.author or user.is_superuser %}
               <p class="detail text-justify"> {{article.description|safe|linebreaks}} </p>
+              {% render_comments article request %} 
           {% else %}
-          <p>این یک مقاله ویژه است و برای تماشا باید اشتراک ویژه تهیه فرمایید</p>
-          {% endif %}          
+          <p class="detail text-justify"> {{article.description|safe|linebreaks|truncatewords:30}} </p>
+          <p class="alert alert-warning">این یک مقاله ویژه است و برای تماشا باید <a href="#" class="alert alert-link">اشتراک ویژه تهیه فرمایید</a></p>
+           {% endif %}          
         {% else %}
-           <p class="detail text-justify"> {{article.description|safe|linebreaks}} </p>
+           <p class="detail text-justify"> {{article.description|safe|linebreaks}}</p>
+           {% render_comments article request %} 
         {% endif %}
       </article>
 

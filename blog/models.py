@@ -5,7 +5,8 @@ from extensions.utils import jalali_converter
 from django.utils.html import format_html
 from account.models import User
 from django.urls import reverse
-
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 # my managers
 
 
@@ -60,6 +61,7 @@ class Article(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES,
                               verbose_name="وضعیت")
     is_special = models.BooleanField(default= False, verbose_name= "مقاله ویژه")
+    comments = GenericRelation(Comment)
     def __str__(self):
         return self.title
     
